@@ -50,7 +50,7 @@ function kreol_campaign_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 43,
+      'weight' => 3,
     ),
   );
 
@@ -85,6 +85,8 @@ function kreol_campaign_field_default_field_instances() {
       'add_mode' => 'button',
       'allowed_bundles' => array(
         'article_carousel' => -1,
+        'audio_preview' => 'audio_preview',
+        'campaign_audio_book' => -1,
         'campaign_text' => 'campaign_text',
         'linkbox' => 'linkbox',
         'material_carousel' => 'material_carousel',
@@ -96,6 +98,8 @@ function kreol_campaign_field_default_field_instances() {
       ),
       'bundle_weights' => array(
         'article_carousel' => 2,
+        'audio_preview' => 16,
+        'campaign_audio_book' => 13,
         'campaign_text' => 3,
         'linkbox' => 4,
         'material_carousel' => 5,
@@ -115,7 +119,7 @@ function kreol_campaign_field_default_field_instances() {
       'module' => 'paragraphs',
       'settings' => array(),
       'type' => 'paragraphs_embed',
-      'weight' => 41,
+      'weight' => 2,
     ),
   );
 
@@ -158,7 +162,7 @@ function kreol_campaign_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 42,
+      'weight' => 1,
     ),
   );
 
