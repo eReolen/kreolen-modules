@@ -8,6 +8,15 @@
  * Implements hook_ctools_plugin_api().
  */
 function kreol_campaign_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "page_manager" && $api == "pages_default") {
+    return array("version" => "1");
+  }
+  if ($module == "panels" && $api == "layouts") {
+    return array("version" => "1");
+  }
+  if ($module == "panels" && $api == "pipelines") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -36,6 +45,16 @@ function kreol_campaign_node_info() {
  */
 function kreol_campaign_paragraphs_info() {
   $items = array(
+    'campaign_audio_book' => array(
+      'name' => 'Audio book',
+      'bundle' => 'campaign_audio_book',
+      'locked' => '1',
+    ),
+    'campaign_audio_books' => array(
+      'name' => 'Audio books',
+      'bundle' => 'campaign_audio_books',
+      'locked' => '1',
+    ),
     'campaign_text' => array(
       'name' => 'Tekst',
       'bundle' => 'campaign_text',
