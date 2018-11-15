@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the kreol_campaign feature.
+ */
+
+include_once 'kreol_campaign.features.inc';
