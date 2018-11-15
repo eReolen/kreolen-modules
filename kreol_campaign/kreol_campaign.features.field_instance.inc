@@ -85,8 +85,9 @@ function kreol_campaign_field_default_field_instances() {
       'add_mode' => 'button',
       'allowed_bundles' => array(
         'article_carousel' => -1,
-        'audio_preview' => 'audio_preview',
+        'audio_preview' => -1,
         'campaign_audio_book' => -1,
+        'campaign_audio_books' => 'campaign_audio_books',
         'campaign_text' => 'campaign_text',
         'linkbox' => 'linkbox',
         'material_carousel' => 'material_carousel',
@@ -100,6 +101,7 @@ function kreol_campaign_field_default_field_instances() {
         'article_carousel' => 2,
         'audio_preview' => 16,
         'campaign_audio_book' => 13,
+        'campaign_audio_books' => 21,
         'campaign_text' => 3,
         'linkbox' => 4,
         'material_carousel' => 5,

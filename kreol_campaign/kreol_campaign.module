@@ -5,3 +5,39 @@
  */
 
 include_once 'kreol_campaign.features.inc';
+
+/**
+ * Implements hook_preprocess_entity().
+ */
+function kreol_campaign_preprocess_entity(&$variables) {
+  if ('paragraphs_item' === $variables['entity_type']) {
+    if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()) {
+      $ting_entity = NULL;
+
+      $variables['cover'] =
+        $variables['author'] =
+        $variables['title'] = array();
+
+      $wrapper = $variables['paragraphs_item']->wrapper();
+      $url = $wrapper->field_url->value();
+      $ting_entity = _reol_base_object_from_url($url);
+
+      if ($ting_entity) {
+        drupal_add_js('https://play.pubhub.dk/1.1.4/js/player-kernel.min.js', 'external');
+        drupal_add_js('https://cdnjs.cloudflare.com/ajax/libs/bowser/1.7.2/bowser.min.js', 'external');
+        drupal_add_js(drupal_get_path('module', 'reol_audio_preview_paragraph') . '/js/audio_preview.js');
+
+        // No cover icons, please.
+        $ting_entity->reol_no_icons = TRUE;
+        $build = ting_object_view($ting_entity, 'compact');
+        // For some reason this is an array.
+        list($isbn,) = $ting_entity->getIsbn();
+        list($author,) = $ting_entity->getCreators();
+        $variables['isbn'] = $isbn;
+        $variables['cover'] = $build['ting_cover'];
+        $variables['author'] = check_plain($author);
+        $variables['title'] = check_plain($ting_entity->getTitle());
+      }
+    }
+  }
+}
