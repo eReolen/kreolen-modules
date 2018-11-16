@@ -70,6 +70,45 @@ function kreol_campaign_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_material_url'.
+  $field_bases['field_material_url'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_material_url',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_materials'.
+  $field_bases['field_materials'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_materials',
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'paragraphs',
+    'settings' => array(
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'paragraphs',
+  );
+
   // Exported field_base: 'field_paragraphs'.
   $field_bases['field_paragraphs'] = array(
     'active' => 1,
@@ -130,13 +169,13 @@ function kreol_campaign_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_url'.
-  $field_bases['field_url'] = array(
+  // Exported field_base: 'field_title'.
+  $field_bases['field_title'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_url',
+    'field_name' => 'field_title',
     'indexes' => array(
       'format' => array(
         0 => 'format',

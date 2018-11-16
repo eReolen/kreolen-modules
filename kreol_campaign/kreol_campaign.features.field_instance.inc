@@ -88,9 +88,11 @@ function kreol_campaign_field_default_field_instances() {
         'audio_preview' => -1,
         'campaign_audio_book' => -1,
         'campaign_audio_books' => 'campaign_audio_books',
+        'campaign_material' => -1,
+        'campaign_materials' => 'campaign_materials',
         'campaign_text' => 'campaign_text',
-        'linkbox' => 'linkbox',
-        'material_carousel' => 'material_carousel',
+        'linkbox' => -1,
+        'material_carousel' => -1,
         'picked_article_carousel' => -1,
         'recommended_material' => -1,
         'review' => -1,
@@ -102,6 +104,8 @@ function kreol_campaign_field_default_field_instances() {
         'audio_preview' => 16,
         'campaign_audio_book' => 13,
         'campaign_audio_books' => 21,
+        'campaign_material' => 27,
+        'campaign_materials' => 28,
         'campaign_text' => 3,
         'linkbox' => 4,
         'material_carousel' => 5,
@@ -111,7 +115,7 @@ function kreol_campaign_field_default_field_instances() {
         'spotlight_box' => 9,
         'video' => 10,
       ),
-      'default_edit_mode' => 'open',
+      'default_edit_mode' => 'closed',
       'title' => 'Paragraph',
       'title_multiple' => 'Paragraphs',
       'user_register_form' => FALSE,
@@ -168,19 +172,20 @@ function kreol_campaign_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'paragraphs_item-campaign_audio_book-field_url'.
-  $field_instances['paragraphs_item-campaign_audio_book-field_url'] = array(
+  // Exported field_instance:
+  // 'paragraphs_item-campaign_audio_book-field_material_url'.
+  $field_instances['paragraphs_item-campaign_audio_book-field_material_url'] = array(
     'bundle' => 'campaign_audio_book',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'paragraphs_editor_preview' => array(
         'label' => 'above',
@@ -190,8 +195,8 @@ function kreol_campaign_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'paragraphs_item',
-    'field_name' => 'field_url',
-    'label' => 'Materiale',
+    'field_name' => 'field_material_url',
+    'label' => 'material_url',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -204,7 +209,7 @@ function kreol_campaign_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 3,
     ),
   );
 
@@ -365,10 +370,10 @@ function kreol_campaign_field_default_field_instances() {
   t('Audio books');
   t('Footer');
   t('Heading');
-  t('Materiale');
   t('Paragraphs');
   t('Tagline');
   t('Text');
+  t('material_url');
 
   return $field_instances;
 }

@@ -11,7 +11,8 @@ include_once 'kreol_campaign.features.inc';
  */
 function kreol_campaign_preprocess_entity(&$variables) {
   if ('paragraphs_item' === $variables['entity_type']) {
-    if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()) {
+    if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()
+				|| 'campaign_material' === $variables['paragraphs_item']->bundle()) {
       $ting_entity = NULL;
 
       $variables['cover'] =
@@ -19,7 +20,7 @@ function kreol_campaign_preprocess_entity(&$variables) {
         $variables['title'] = array();
 
       $wrapper = $variables['paragraphs_item']->wrapper();
-      $url = $wrapper->field_url->value();
+      $url = $wrapper->field_material_url->value();
       $ting_entity = _reol_base_object_from_url($url);
 
       if ($ting_entity) {
@@ -31,8 +32,10 @@ function kreol_campaign_preprocess_entity(&$variables) {
         $ting_entity->reol_no_icons = TRUE;
         $build = ting_object_view($ting_entity, 'compact');
         // For some reason this is an array.
-        list($isbn,) = $ting_entity->getIsbn();
-        list($author,) = $ting_entity->getCreators();
+				$stuff = $ting_entity->getIsbn();
+        $isbn = reset($stuff);
+				$stuff = $ting_entity->getCreators();
+        $author = reset($stuff);
         $variables['isbn'] = $isbn;
         $variables['cover'] = $build['ting_cover'];
         $variables['author'] = check_plain($author);

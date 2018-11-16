@@ -55,6 +55,16 @@ function kreol_campaign_paragraphs_info() {
       'bundle' => 'campaign_audio_books',
       'locked' => '1',
     ),
+    'campaign_material' => array(
+      'name' => 'campaign material',
+      'bundle' => 'campaign_material',
+      'locked' => '1',
+    ),
+    'campaign_materials' => array(
+      'name' => 'campaign materials',
+      'bundle' => 'campaign_materials',
+      'locked' => '1',
+    ),
     'campaign_text' => array(
       'name' => 'Tekst',
       'bundle' => 'campaign_text',
