@@ -285,6 +285,163 @@ function kreol_campaign_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'paragraphs_item-campaign_material-field_material_url'.
+  $field_instances['paragraphs_item-campaign_material-field_material_url'] = array(
+    'bundle' => 'campaign_material',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_material_url',
+    'label' => 'material_url',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'paragraphs_item-campaign_materials-field_materials'.
+  $field_instances['paragraphs_item-campaign_materials-field_materials'] = array(
+    'bundle' => 'campaign_materials',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'paragraphs',
+        'settings' => array(
+          'view_mode' => 'full',
+        ),
+        'type' => 'paragraphs_view',
+        'weight' => 1,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_materials',
+    'label' => 'materials',
+    'required' => 0,
+    'settings' => array(
+      'add_mode' => 'select',
+      'allowed_bundles' => array(
+        'article_carousel' => -1,
+        'audio_preview' => -1,
+        'campaign_audio_book' => -1,
+        'campaign_audio_books' => -1,
+        'campaign_material' => 'campaign_material',
+        'campaign_materials' => -1,
+        'campaign_text' => -1,
+        'linkbox' => -1,
+        'material_carousel' => -1,
+        'picked_article_carousel' => -1,
+        'recommended_material' => -1,
+        'review' => -1,
+        'spotlight_box' => -1,
+        'video' => -1,
+      ),
+      'bundle_weights' => array(
+        'article_carousel' => 2,
+        'audio_preview' => 3,
+        'campaign_audio_book' => 4,
+        'campaign_audio_books' => 5,
+        'campaign_material' => 6,
+        'campaign_materials' => 7,
+        'campaign_text' => 8,
+        'linkbox' => 9,
+        'material_carousel' => 10,
+        'picked_article_carousel' => 11,
+        'recommended_material' => 12,
+        'review' => 13,
+        'spotlight_box' => 14,
+        'video' => 15,
+      ),
+      'default_edit_mode' => 'open',
+      'title' => 'Paragraph',
+      'title_multiple' => 'Paragraphs',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'paragraphs',
+      'settings' => array(),
+      'type' => 'paragraphs_embed',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'paragraphs_item-campaign_materials-field_title'.
+  $field_instances['paragraphs_item-campaign_materials-field_title'] = array(
+    'bundle' => 'campaign_materials',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_title',
+    'label' => 'title',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'paragraphs_item-campaign_text-field_heading'.
   $field_instances['paragraphs_item-campaign_text-field_heading'] = array(
     'bundle' => 'campaign_text',
@@ -374,6 +531,8 @@ function kreol_campaign_field_default_field_instances() {
   t('Tagline');
   t('Text');
   t('material_url');
+  t('materials');
+  t('title');
 
   return $field_instances;
 }
