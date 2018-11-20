@@ -45,3 +45,65 @@ function kreol_campaign_preprocess_entity(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function kreol_campaign_form_alter(&$form, &$form_state, $form_id) {
+  if ('kreol_campaign_node_form' === $form_id) {
+    if (isset($form['field_geofencing_origin'])) {
+      $form['field_geofencing_origin']['#states'] = [
+        'visible' => [
+          'select[id="edit-field-campaign-add-on-und"]' => ['value' => 'geofencing'],
+        ],
+        'required' => [
+          'select[id="edit-field-campaign-add-on-und"]' => ['value' => 'geofencing'],
+        ],
+      ];
+      $form['field_geofencing_max_distance']['#states'] = $form['field_geofencing_origin']['#states'];
+    }
+  }
+}
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
+ */
+function kreol_campaign_paragraphs_field_widget_form_alter(&$element, &$form_state, $context) {
+  if (isset($element['#bundle']) && 'campaign_audio_book' === $element['#bundle']) {
+    // $element['field_material_url'][LANGUAGE_NONE][0]['value']['#autocomplete_path'] = 'kreol/autocomplete/material.url';
+  }
+}
+
+/**
+ * Implements hook_panels_pane_content_alter().
+ */
+function kreol_campaign_panels_pane_content_alter($content, $pane, $args, $contexts) {
+}
+
+/**
+ * Implements hook_menu().
+ */
+function kreol_campaign_menu()
+{
+  $items['kreol/autocomplete/%'] = [
+    'page callback' => 'kreol_autocomplete',
+    'page arguments' => [2],
+    'access arguments' => ['access content'],
+  ];
+
+  return $items;
+}
+
+function kreol_autocomplete($type, $query) {
+  $url = url('https://itk:itk@stg.ereolen.dk/widget/search', ['query' => ['query' => $query]]);
+  $response = drupal_http_request($url);
+  $items = json_decode($response->data)->data;
+  $data = [];
+  if ($items) {
+    foreach ($items as $item) {
+      $data[$item->url] = implode('<br/>', [$item->id, $item->title, implode(', ', $item->creators)]);
+    }
+  }
+
+  drupal_json_output($data);
+}
