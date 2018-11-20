@@ -19,9 +19,8 @@ function kreol_campaign_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'hidden',
         'weight' => 3,
       ),
       'teaser' => array(
@@ -61,8 +60,9 @@ function kreol_campaign_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'text_default',
         'weight' => 2,
       ),
       'teaser' => array(
@@ -97,13 +97,18 @@ function kreol_campaign_field_default_field_instances() {
     'bundle' => 'kreol_campaign',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Maksimal afstand i meter til et af punkterne angivet ovenfor.',
+    'description' => 'Maksimal tilladt afstand til et af punkterne angivet ovenfor.',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => '',
+        ),
+        'type' => 'number_integer',
         'weight' => 5,
       ),
       'teaser' => array(
@@ -118,16 +123,17 @@ function kreol_campaign_field_default_field_instances() {
     'label' => 'geofencing max distance',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
+      'max' => '',
+      'min' => 0,
+      'prefix' => '',
+      'suffix' => 'm',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
+      'active' => 0,
+      'module' => 'number',
+      'settings' => array(),
+      'type' => 'number',
       'weight' => 6,
     ),
   );
@@ -141,9 +147,8 @@ function kreol_campaign_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 4,
       ),
       'teaser' => array(
@@ -186,7 +191,7 @@ function kreol_campaign_field_default_field_instances() {
           'view_mode' => 'full',
         ),
         'type' => 'paragraphs_view',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -260,9 +265,12 @@ function kreol_campaign_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
+        'module' => 'ding_base',
+        'settings' => array(
+          'body_snippet_length' => 1000,
+        ),
+        'type' => 'body_snippet',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -296,7 +304,7 @@ function kreol_campaign_field_default_field_instances() {
     'bundle' => 'campaign_audio_book',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f',
+    'description' => 'Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f. If not set, only a preview will be available.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -315,7 +323,7 @@ function kreol_campaign_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_audio_url',
     'label' => 'audio_url',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -726,11 +734,11 @@ function kreol_campaign_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Audio books');
-  t('Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f');
+  t('Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f. If not set, only a preview will be available.');
   t('Footer');
   t('Heading');
   t('Koordinater for hospitalet. Brug <a href="http://maps.google.com/">Google Maps<a/> eller lignende til at finde koordinaterne (se fx “<a href="https://support.google.com/maps/answer/18539">Get the coordinates of a place</a>”)');
-  t('Maksimal afstand i meter til et af punkterne angivet ovenfor.');
+  t('Maksimal tilladt afstand til et af punkterne angivet ovenfor.');
   t('Paragraphs');
   t('Tagline');
   t('Text');
