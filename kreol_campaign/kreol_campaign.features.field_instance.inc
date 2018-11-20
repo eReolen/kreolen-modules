@@ -291,6 +291,47 @@ function kreol_campaign_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'paragraphs_item-campaign_audio_book-field_audio_url'.
+  $field_instances['paragraphs_item-campaign_audio_book-field_audio_url'] = array(
+    'bundle' => 'campaign_audio_book',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_audio_url',
+    'label' => 'audio_url',
+    'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance:
   // 'paragraphs_item-campaign_audio_book-field_material_url'.
   $field_instances['paragraphs_item-campaign_audio_book-field_material_url'] = array(
     'bundle' => 'campaign_audio_book',
@@ -685,6 +726,7 @@ function kreol_campaign_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Audio books');
+  t('Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f');
   t('Footer');
   t('Heading');
   t('Koordinater for hospitalet. Brug <a href="http://maps.google.com/">Google Maps<a/> eller lignende til at finde koordinaterne (se fx “<a href="https://support.google.com/maps/answer/18539">Get the coordinates of a place</a>”)');
@@ -692,6 +734,7 @@ function kreol_campaign_field_default_field_instances() {
   t('Paragraphs');
   t('Tagline');
   t('Text');
+  t('audio_url');
   t('campaign add-on');
   t('geofencing max distance');
   t('geofencing origin');
