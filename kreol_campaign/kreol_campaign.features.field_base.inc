@@ -121,18 +121,20 @@ function kreol_campaign_field_default_field_bases() {
     'entity_types' => array(),
     'field_name' => 'field_geofencing_origin',
     'indexes' => array(
-      'format' => array(
-        0 => 'format',
+      'lat' => array(
+        0 => 'lat',
+      ),
+      'lng' => array(
+        0 => 'lng',
       ),
     ),
     'locked' => 0,
-    'module' => 'text',
+    'module' => 'geolocation',
     'settings' => array(
-      'max_length' => 255,
       'profile2_private' => FALSE,
     ),
     'translatable' => 0,
-    'type' => 'text',
+    'type' => 'geolocation_latlng',
   );
 
   // Exported field_base: 'field_heading'.

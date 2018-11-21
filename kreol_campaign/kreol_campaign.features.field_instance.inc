@@ -95,7 +95,11 @@ function kreol_campaign_field_default_field_instances() {
   // 'node-kreol_campaign-field_geofencing_max_distance'.
   $field_instances['node-kreol_campaign-field_geofencing_max_distance'] = array(
     'bundle' => 'kreol_campaign',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 1000,
+      ),
+    ),
     'deleted' => 0,
     'description' => 'Maksimal tilladt afstand til et af punkterne angivet ovenfor.',
     'display' => array(
@@ -134,7 +138,7 @@ function kreol_campaign_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -147,9 +151,10 @@ function kreol_campaign_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'geolocation',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
+        'type' => 'geolocation_text',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -163,17 +168,14 @@ function kreol_campaign_field_default_field_instances() {
     'label' => 'geofencing origin',
     'required' => 0,
     'settings' => array(
-      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 5,
+      'active' => 0,
+      'module' => 'geolocation_googlemaps',
+      'settings' => array(),
+      'type' => 'geolocation_googlemap',
+      'weight' => 7,
     ),
   );
 
@@ -283,6 +285,147 @@ function kreol_campaign_field_default_field_instances() {
     'field_name' => 'field_tagline',
     'label' => 'Tagline',
     'required' => 1,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-kreol_campaign_tv-body'.
+  $field_instances['node-kreol_campaign_tv-body'] = array(
+    'bundle' => 'kreol_campaign_tv',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => TRUE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-kreol_campaign_tv-field_audio_books'.
+  $field_instances['node-kreol_campaign_tv-field_audio_books'] = array(
+    'bundle' => 'kreol_campaign_tv',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'paragraphs',
+        'settings' => array(
+          'view_mode' => 'full',
+        ),
+        'type' => 'paragraphs_view',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_audio_books',
+    'label' => 'Audio books',
+    'required' => 0,
+    'settings' => array(
+      'add_mode' => 'select',
+      'allowed_bundles' => array(
+        'campaign_audio_book' => 'campaign_audio_book',
+        'campaign_audio_books' => -1,
+        'campaign_material' => -1,
+        'campaign_materials' => -1,
+        'campaign_text' => -1,
+      ),
+      'bundle_weights' => array(
+        'campaign_audio_book' => 2,
+        'campaign_audio_books' => 3,
+        'campaign_material' => 4,
+        'campaign_materials' => 5,
+        'campaign_text' => 6,
+      ),
+      'default_edit_mode' => 'open',
+      'title' => 'Paragraph',
+      'title_multiple' => 'Paragraphs',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'paragraphs',
+      'settings' => array(),
+      'type' => 'paragraphs_embed',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-kreol_campaign_tv-field_tagline'.
+  $field_instances['node-kreol_campaign_tv-field_tagline'] = array(
+    'bundle' => 'kreol_campaign_tv',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tagline',
+    'label' => 'Tagline',
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -735,6 +878,7 @@ function kreol_campaign_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Audio books');
   t('Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f. If not set, only a preview will be available.');
+  t('Body');
   t('Footer');
   t('Heading');
   t('Koordinater for hospitalet. Brug <a href="http://maps.google.com/">Google Maps<a/> eller lignende til at finde koordinaterne (se fx “<a href="https://support.google.com/maps/answer/18539">Get the coordinates of a place</a>”)');

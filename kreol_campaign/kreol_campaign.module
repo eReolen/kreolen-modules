@@ -51,17 +51,12 @@ function kreol_campaign_preprocess_entity(&$variables) {
  */
 function kreol_campaign_form_alter(&$form, &$form_state, $form_id) {
   if ('kreol_campaign_node_form' === $form_id) {
-    if (isset($form['field_geofencing_origin'])) {
-      $form['field_geofencing_origin']['#states'] = [
-        'visible' => [
-          'select[id="edit-field-campaign-add-on-und"]' => ['value' => 'geofencing'],
-        ],
-        'required' => [
-          'select[id="edit-field-campaign-add-on-und"]' => ['value' => 'geofencing'],
-        ],
-      ];
+    // Hide the campaign add-on field (for now).
+    $form['field_campaign_add_on'][LANGUAGE_NONE]['#type'] = 'hidden';
+    $form['field_campaign_add_on']['#type'];
 
-      $form['field_geofencing_max_distance']['#states'] = $form['field_geofencing_origin']['#states'];
+    if (isset($form['field_geofencing_origin'])) {
+      // @TODO Add field validation to field_geofencing_origin (multiple values)
     }
   }
 }
@@ -71,6 +66,7 @@ function kreol_campaign_form_alter(&$form, &$form_state, $form_id) {
  */
 function kreol_campaign_paragraphs_field_widget_form_alter(&$element, &$form_state, $context) {
   if (isset($element['#bundle']) && 'campaign_audio_book' === $element['#bundle']) {
+    // Add autocomplete to material url fields.
     // $element['field_material_url'][LANGUAGE_NONE][0]['value']['#autocomplete_path'] = 'kreol/autocomplete/material.url';
   }
 }
