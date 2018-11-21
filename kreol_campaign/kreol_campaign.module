@@ -107,3 +107,37 @@ function kreol_autocomplete($type, $query) {
 
   drupal_json_output($data);
 }
+
+/**
+ * Implements hook_secure_permissions_roles().
+ */
+function kreol_campaign_secure_permissions_roles() {
+  return [
+    'campaign editor',
+  ];
+}
+
+/**
+ * Implements hook_secure_permissions().
+ */
+function kreol_campaign_secure_permissions($role) {
+  $permissions = [
+    'campaign editor' => [
+      'access toolbar',
+
+      'create kreol_campaign content',
+      'edit own kreol_campaign content',
+      'edit any kreol_campaign content',
+      'delete own kreol_campaign content',
+      'delete any kreol_campaign content',
+
+      'create kreol_campaign_tv content',
+      'edit own kreol_campaign_tv content',
+      'edit any kreol_campaign_tv content',
+      'delete own kreol_campaign_tv content',
+      'delete any kreol_campaign_tv content',
+    ],
+  ];
+
+  return isset($permissions[$role]) ? $permissions[$role] : NULL;
+}
