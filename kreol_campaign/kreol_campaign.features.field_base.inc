@@ -67,32 +67,6 @@ function kreol_campaign_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_campaign_add_on'.
-  $field_bases['field_campaign_add_on'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_campaign_add_on',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'geofencing' => 'geofencing',
-        'navigation' => 'navigation',
-      ),
-      'allowed_values_function' => '',
-      'profile2_private' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'field_footer'.
   $field_bases['field_footer'] = array(
     'active' => 1,

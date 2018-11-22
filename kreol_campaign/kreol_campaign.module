@@ -52,9 +52,6 @@ function kreol_campaign_preprocess_entity(&$variables) {
  */
 function kreol_campaign_form_alter(&$form, &$form_state, $form_id) {
   if ('kreol_campaign_node_form' === $form_id) {
-    // Hide the campaign add-on field (for now).
-    $form['field_campaign_add_on'][LANGUAGE_NONE]['#type'] = 'hidden';
-    $form['field_campaign_add_on']['#type'];
   }
 }
 
