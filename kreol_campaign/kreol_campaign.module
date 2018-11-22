@@ -55,10 +55,6 @@ function kreol_campaign_form_alter(&$form, &$form_state, $form_id) {
     // Hide the campaign add-on field (for now).
     $form['field_campaign_add_on'][LANGUAGE_NONE]['#type'] = 'hidden';
     $form['field_campaign_add_on']['#type'];
-
-    if (isset($form['field_geofencing_origin'])) {
-      // @TODO Add field validation to field_geofencing_origin (multiple values)
-    }
   }
 }
 
@@ -140,4 +136,22 @@ function kreol_campaign_secure_permissions($role) {
   ];
 
   return isset($permissions[$role]) ? $permissions[$role] : NULL;
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function kreol_campaign_entity_presave($entity, $type) {
+  if ('paragraphs_item' === $type && 'campaign_audio_book' === $entity->bundle()) {
+    $wrapper = entity_metadata_wrapper($type, $entity);
+    if (preg_match('/(?P<id>.{8}-.{4}-.{4}-.{4}-.{12})/', $wrapper->field_audio_url->value(), $matches)) {
+      try {
+        $metadata_url = 'https://audio.api.streaming.pubhub.dk/v1/orders/'.$matches['id'];
+        $result = drupal_http_request($metadata_url);
+        $wrapper->field_audio_data = $result->data;
+      } catch (\Exception $exception) {
+        drupal_set_message(t('Cannot get audio data'), 'error');
+      }
+    }
+  }
 }

@@ -172,9 +172,9 @@ function kreol_campaign_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'geolocation_googlemaps',
+      'module' => 'geolocation',
       'settings' => array(),
-      'type' => 'geolocation_googlemap',
+      'type' => 'geolocation_text',
       'weight' => 7,
     ),
   );
@@ -442,6 +442,44 @@ function kreol_campaign_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'paragraphs_item-campaign_audio_book-field_audio_data'.
+  $field_instances['paragraphs_item-campaign_audio_book-field_audio_data'] = array(
+    'bundle' => 'campaign_audio_book',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_audio_data',
+    'label' => 'audio data',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_hidden',
+      'settings' => array(),
+      'type' => 'field_hidden',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance:
   // 'paragraphs_item-campaign_audio_book-field_audio_url'.
   $field_instances['paragraphs_item-campaign_audio_book-field_audio_url'] = array(
     'bundle' => 'campaign_audio_book',
@@ -475,7 +513,7 @@ function kreol_campaign_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 120,
       ),
       'type' => 'text_textfield',
       'weight' => 4,
@@ -886,6 +924,7 @@ function kreol_campaign_field_default_field_instances() {
   t('Paragraphs');
   t('Tagline');
   t('Text');
+  t('audio data');
   t('audio_url');
   t('campaign add-on');
   t('geofencing max distance');
