@@ -8,12 +8,24 @@
 include_once 'kreol_campaign.features.inc';
 
 /**
+ * Implements hook_preprocess_node().
+ */
+function kreol_campaign_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  if ('kreol_campaign' === $node->type) {
+    drupal_add_js('https://play.pubhub.dk/1.1.4/js/player-kernel.min.js', 'external');
+    drupal_add_js('https://cdnjs.cloudflare.com/ajax/libs/bowser/1.7.2/bowser.min.js', 'external');
+    drupal_add_js(drupal_get_path('module', 'kreol_campaign') . '/js/audio_book.js');
+  }
+}
+
+/**
  * Implements hook_preprocess_entity().
  */
 function kreol_campaign_preprocess_entity(&$variables) {
   if ('paragraphs_item' === $variables['entity_type']) {
     if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()
-                || 'campaign_material' === $variables['paragraphs_item']->bundle()) {
+        || 'campaign_material' === $variables['paragraphs_item']->bundle()) {
       $ting_entity = NULL;
 
       $variables['cover'] =
@@ -25,10 +37,6 @@ function kreol_campaign_preprocess_entity(&$variables) {
       $ting_entity = _reol_base_object_from_url($url);
 
       if ($ting_entity) {
-        drupal_add_js('https://play.pubhub.dk/1.1.4/js/player-kernel.min.js', 'external');
-        drupal_add_js('https://cdnjs.cloudflare.com/ajax/libs/bowser/1.7.2/bowser.min.js', 'external');
-        drupal_add_js(drupal_get_path('module', 'kreol_campaign') . '/js/audio_book.js');
-
         if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()) {
           $ting_entity->reol_no_icons = TRUE;
         }
@@ -143,10 +151,11 @@ function kreol_campaign_entity_presave($entity, $type) {
     $wrapper = entity_metadata_wrapper($type, $entity);
     if (preg_match('/(?P<id>.{8}-.{4}-.{4}-.{4}-.{12})/', $wrapper->field_audio_url->value(), $matches)) {
       try {
-        $metadata_url = 'https://audio.api.streaming.pubhub.dk/v1/orders/'.$matches['id'];
+        $metadata_url = 'https://audio.api.streaming.pubhub.dk/v1/orders/' . $matches['id'];
         $result = drupal_http_request($metadata_url);
         $wrapper->field_audio_data = $result->data;
-      } catch (\Exception $exception) {
+      }
+      catch (\Exception $exception) {
         drupal_set_message(t('Cannot get audio data'), 'error');
       }
     }
