@@ -24,8 +24,7 @@ function kreol_campaign_preprocess_node(&$variables) {
  */
 function kreol_campaign_preprocess_entity(&$variables) {
   if ('paragraphs_item' === $variables['entity_type']) {
-    if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()
-        || 'campaign_material' === $variables['paragraphs_item']->bundle()) {
+    if ('campaign_material' === $variables['paragraphs_item']->bundle()) {
       $ting_entity = NULL;
 
       $variables['cover'] =
@@ -37,9 +36,6 @@ function kreol_campaign_preprocess_entity(&$variables) {
       $ting_entity = _reol_base_object_from_url($url);
 
       if ($ting_entity) {
-        if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()) {
-          $ting_entity->reol_no_icons = TRUE;
-        }
         $build = ting_object_view($ting_entity, 'compact');
         // For some reason this is an array.
         $stuff = $ting_entity->getIsbn();

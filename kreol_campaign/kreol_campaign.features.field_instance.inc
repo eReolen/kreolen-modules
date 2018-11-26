@@ -439,7 +439,7 @@ function kreol_campaign_field_default_field_instances() {
       'module' => 'field_hidden',
       'settings' => array(),
       'type' => 'field_hidden',
-      'weight' => 6,
+      'weight' => 2,
     ),
   );
 
@@ -449,7 +449,7 @@ function kreol_campaign_field_default_field_instances() {
     'bundle' => 'campaign_audio_book',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f. If not set, only a preview will be available.',
+    'description' => 'Url til lydbog, fx https://audio.api.streaming.pubhub.dk/Play.ashx?o=942aad16-d9bc-4726-a76d-5c1094bb28f8.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -468,7 +468,7 @@ function kreol_campaign_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_audio_url',
     'label' => 'audio_url',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -480,7 +480,7 @@ function kreol_campaign_field_default_field_instances() {
         'size' => 120,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 0,
     ),
   );
 
@@ -490,7 +490,7 @@ function kreol_campaign_field_default_field_instances() {
     'bundle' => 'campaign_audio_book',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Url til materialet på ereolen.dk, fx https://ereolen.dk/ting/object/870970-basis%3A28194048.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -509,7 +509,7 @@ function kreol_campaign_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_material_url',
     'label' => 'material_url',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -518,10 +518,10 @@ function kreol_campaign_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 120,
       ),
       'type' => 'text_textfield',
-      'weight' => 3,
+      'weight' => 1,
     ),
   );
 
@@ -879,7 +879,6 @@ function kreol_campaign_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Audio books');
-  t('Audio url, e.g. https://audio.api.streaming.pubhub.dk/Play.ashx?o=ca4c0206-1e9e-4bab-999a-e942e8d3537f. If not set, only a preview will be available.');
   t('Body');
   t('Footer');
   t('Heading');
@@ -888,6 +887,8 @@ function kreol_campaign_field_default_field_instances() {
   t('Paragraphs');
   t('Tagline');
   t('Text');
+  t('Url til lydbog, fx https://audio.api.streaming.pubhub.dk/Play.ashx?o=942aad16-d9bc-4726-a76d-5c1094bb28f8.');
+  t('Url til materialet på ereolen.dk, fx https://ereolen.dk/ting/object/870970-basis%3A28194048.');
   t('audio data');
   t('audio_url');
   t('geofencing max distance');
