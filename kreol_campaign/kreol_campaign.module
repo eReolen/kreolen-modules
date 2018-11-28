@@ -159,6 +159,10 @@ function kreol_campaign_secure_permissions($role) {
     'campaign editor' => [
       'access toolbar',
       'access content overview',
+
+      'access administration pages',
+      'administer redirects',
+
       'view the administration theme',
       'view own unpublished content',
 
