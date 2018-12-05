@@ -63,15 +63,21 @@ function kreol_campaign_form_alter(&$form, &$form_state, $form_id) {
  */
 function kreol_campaign_paragraphs_field_widget_form_alter(&$element, &$form_state, $context) {
   if (isset($element['#bundle']) && 'campaign_audio_book' === $element['#bundle']) {
-    $wrapper = entity_metadata_wrapper($element['#entity_type'], $element['#entity']);
-    if (isset($wrapper->field_audio_data)) {
-      $audio_data = json_decode($wrapper->field_audio_data->value(), TRUE);
-      if (!empty($audio_data)) {
-        $element['field_audio_url']['#prefix'] = '<div class="description">('
-          . $audio_data['title'] . '; ' . $audio_data['artist']
-          . ')</div>';
-      }
+    /** @var \ParagraphsItemEntity $entity */
+    $entity = $element['#entity'];
+    $wrapper = entity_metadata_wrapper($element['#entity_type'], $entity);
+    $audio_data = json_decode($wrapper->field_audio_data->value(), TRUE);
+    if (!empty($audio_data)) {
+      $element['field_material_url']['#prefix'] = '<div class="description">('
+        . $audio_data['title'] . '; ' . $audio_data['artist']
+        . ')</div>';
     }
+
+    if ('campaign_audio_books' === $entity->hostEntityBundle()) {
+      // Hide the audio url field on non-tv campaign pages.
+      unset($element['field_audio_url']);
+    }
+
     // Add autocomplete to material url fields.
     // $element['field_material_url'][LANGUAGE_NONE][0]['value']['#autocomplete_path']
     // = 'kreol/autocomplete/material.url';.
@@ -207,8 +213,46 @@ function kreol_campaign_entity_presave($entity, $type) {
         $wrapper->field_audio_data = json_encode($audio_data);
       }
       catch (\Exception $exception) {
-        drupal_set_message(t('Cannot get audio data'), 'error');
+        drupal_set_message(t('Cannot get audio data for isbn @isbn (@url)', array('@isbn' => $isbn, '@url' => $url)), 'error');
+      }
+
+      if ('kreol_campaign_tv' === $entity->hostEntityBundle()) {
+        try {
+          $order_id = _kreol_campaign_get_orderid($isbn);
+          if (empty($order_id)) {
+            throw new \Exception('');
+          }
+          $wrapper->field_audio_url = $order_id;
+        }
+        catch (\Exception $exception) {
+          drupal_set_message(t('Cannot get order id for isbn @isbn (@url)', array('@isbn' => $isbn, '@url' => $url)), 'error');
+        }
+      }
+    }
+    else {
+      drupal_set_message(t('Cannot get audio data from url @url', array('@url' => $url)), 'error');
+    }
+  }
+}
+
+/**
+ * Get order id from an isbn.
+ *
+ * This hack tries to parse a JavaScript expression in an HTML page …
+ */
+function _kreol_campaign_get_orderid($isbn) {
+  $url = 'https://play.pubhub.dk/lyttestation.html';
+  $response = drupal_http_request($url);
+  if (isset($response->data)) {
+    $pattern = '@[\'"](?P<isbn>[0-9]{13})[\'"]\s*:\s*[\'"](?P<orderid>[a-z0-9-]{36})[\'"].*//\s*(?P<title>.+)@i';
+    if (preg_match_all($pattern, $response->data, $matches, PREG_SET_ORDER)) {
+      foreach ($matches as $match) {
+        if ($isbn === $match['isbn']) {
+          return $match['orderid'];
+        }
       }
     }
   }
+
+  return NULL;
 }

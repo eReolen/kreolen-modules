@@ -444,6 +444,47 @@ function kreol_campaign_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'paragraphs_item-campaign_audio_book-field_audio_url'.
+  $field_instances['paragraphs_item-campaign_audio_book-field_audio_url'] = array(
+    'bundle' => 'campaign_audio_book',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Udfyldes automatisk ud fra materiale-url\'en.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+      'paragraphs_editor_preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'paragraphs_item',
+    'field_name' => 'field_audio_url',
+    'label' => 'Ordre-id',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'paragraphs_item-campaign_audio_book-field_material_url'.
   $field_instances['paragraphs_item-campaign_audio_book-field_material_url'] = array(
     'bundle' => 'campaign_audio_book',
@@ -843,9 +884,11 @@ function kreol_campaign_field_default_field_instances() {
   t('Heading');
   t('Koordinater for hospitalet. Brug <a href="http://maps.google.com/">Google Maps<a/> eller lignende til at finde koordinaterne (se fx “<a href="https://support.google.com/maps/answer/18539">Get the coordinates of a place</a>”)');
   t('Maksimal tilladt afstand til et af punkterne angivet ovenfor.');
+  t('Ordre-id');
   t('Paragraphs');
   t('Tagline');
   t('Text');
+  t('Udfyldes automatisk ud fra materiale-url\'en.');
   t('Url til materialet på ereolen.dk, fx https://ereolen.dk/ting/object/870970-basis%3A28194048.');
   t('audio data');
   t('geofencing max distance');
