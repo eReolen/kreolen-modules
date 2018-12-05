@@ -167,6 +167,7 @@ function kreol_campaign_secure_permissions($role) {
 
       'view the administration theme',
       'view own unpublished content',
+      'use text format ding_wysiwyg',
 
       'create kreol_campaign content',
       'edit own kreol_campaign content',
