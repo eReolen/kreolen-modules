@@ -21,12 +21,14 @@ function kreol_campaign_preprocess_node(&$variables) {
  */
 function kreol_campaign_preprocess_entity(&$variables) {
   if ('paragraphs_item' === $variables['entity_type']) {
-    if ('campaign_material' === $variables['paragraphs_item']->bundle()) {
+    if ('campaign_audio_book' === $variables['paragraphs_item']->bundle()
+        || 'campaign_material' === $variables['paragraphs_item']->bundle()) {
       $ting_entity = NULL;
 
-      $variables['cover'] =
+      $variables['isbn'] =
+        $variables['cover'] =
         $variables['author'] =
-        $variables['title'] = array();
+        $variables['title'] = '';
 
       $wrapper = $variables['paragraphs_item']->wrapper();
       $url = $wrapper->field_material_url->value();
@@ -189,12 +191,18 @@ function kreol_campaign_secure_permissions($role) {
 function kreol_campaign_entity_presave($entity, $type) {
   if ('paragraphs_item' === $type && 'campaign_audio_book' === $entity->bundle()) {
     $wrapper = entity_metadata_wrapper($type, $entity);
-    if (preg_match('/(?P<id>.{8}-.{4}-.{4}-.{4}-.{12})/', $wrapper->field_audio_url->value(), $matches)) {
+    $url = $wrapper->field_material_url->value();
+    $ting_entity = _reol_base_object_from_url($url);
+
+    if ($ting_entity) {
+      $stuff = $ting_entity->getIsbn();
+      $isbn = reset($stuff);
+
       try {
-        $metadata_url = 'https://audio.api.streaming.pubhub.dk/v1/orders/' . $matches['id'];
+        $metadata_url = 'https://audio.api.streaming.pubhub.dk/v1/samples/' . $isbn;
         $result = drupal_http_request($metadata_url);
         $audio_data = json_decode($result->data);
-        $audio_data->orderId = $matches['id'];
+        $audio_data->isbn = $isbn;
         $wrapper->field_audio_data = json_encode($audio_data);
       }
       catch (\Exception $exception) {

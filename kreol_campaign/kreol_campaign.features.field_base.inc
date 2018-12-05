@@ -45,28 +45,6 @@ function kreol_campaign_field_default_field_bases() {
     'type' => 'field_hidden_text_long',
   );
 
-  // Exported field_base: 'field_audio_url'.
-  $field_bases['field_audio_url'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_audio_url',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'max_length' => 255,
-      'profile2_private' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
   // Exported field_base: 'field_footer'.
   $field_bases['field_footer'] = array(
     'active' => 1,

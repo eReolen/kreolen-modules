@@ -444,47 +444,6 @@ function kreol_campaign_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'paragraphs_item-campaign_audio_book-field_audio_url'.
-  $field_instances['paragraphs_item-campaign_audio_book-field_audio_url'] = array(
-    'bundle' => 'campaign_audio_book',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Url til lydbog, fx https://audio.api.streaming.pubhub.dk/Play.ashx?o=942aad16-d9bc-4726-a76d-5c1094bb28f8.',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 2,
-      ),
-      'paragraphs_editor_preview' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'paragraphs_item',
-    'field_name' => 'field_audio_url',
-    'label' => 'audio_url',
-    'required' => 1,
-    'settings' => array(
-      'text_processing' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 120,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance:
   // 'paragraphs_item-campaign_audio_book-field_material_url'.
   $field_instances['paragraphs_item-campaign_audio_book-field_material_url'] = array(
     'bundle' => 'campaign_audio_book',
@@ -509,7 +468,7 @@ function kreol_campaign_field_default_field_instances() {
     'entity_type' => 'paragraphs_item',
     'field_name' => 'field_material_url',
     'label' => 'material_url',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -887,10 +846,8 @@ function kreol_campaign_field_default_field_instances() {
   t('Paragraphs');
   t('Tagline');
   t('Text');
-  t('Url til lydbog, fx https://audio.api.streaming.pubhub.dk/Play.ashx?o=942aad16-d9bc-4726-a76d-5c1094bb28f8.');
   t('Url til materialet på ereolen.dk, fx https://ereolen.dk/ting/object/870970-basis%3A28194048.');
   t('audio data');
-  t('audio_url');
   t('geofencing max distance');
   t('geofencing origin');
   t('material_url');
