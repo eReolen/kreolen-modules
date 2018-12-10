@@ -186,6 +186,11 @@ function kreol_campaign_secure_permissions($role) {
       'edit any kreol_campaign_tv content',
       'delete own kreol_campaign_tv content',
       'delete any kreol_campaign_tv content',
+
+      'access site reports',
+      'administer statistics',
+      'access statistics',
+      'view post access counter',
     ],
   ];
 
