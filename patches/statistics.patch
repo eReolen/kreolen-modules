@@ -1,0 +1,13 @@
+diff --git a/modules/statistics/statistics.module b/modules/statistics/statistics.module
+index 356a0e2..0471542 100644
+--- a/modules/statistics/statistics.module
++++ b/modules/statistics/statistics.module
+@@ -82,7 +82,7 @@ function statistics_exit() {
+     db_insert('accesslog')
+       ->fields(array(
+         'title' => truncate_utf8(strip_tags(drupal_get_title()), 255),
+-        'path' => truncate_utf8($_GET['q'], 255),
++        'path' => truncate_utf8(ltrim($_SERVER['REQUEST_URI'], '/'), 255),
+         'url' => isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '',
+         'hostname' => ip_address(),
+         'uid' => $user->uid,
