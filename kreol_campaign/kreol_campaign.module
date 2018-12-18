@@ -228,8 +228,14 @@ function kreol_campaign_entity_presave($entity, $type) {
       try {
         $metadata_url = 'https://audio.api.streaming.pubhub.dk/v1/orders/' . $order_id;
         $result = drupal_http_request($metadata_url);
-        $audio_data = json_decode($result->data);
-        $audio_data->isbn = $isbn;
+        $audio_data = json_decode($result->data, TRUE);
+        // Turn http image urls into https urls (to prevent mixed content).
+        array_walk_recursive($audio_data, function (&$value) {
+          if (preg_match('@^http://images.pubhub.dk/@', $value)) {
+            $value = preg_replace('@^http://@', 'https://', $value);
+          }
+        });
+        $audio_data['isbn'] = $isbn;
         $wrapper->field_audio_data = json_encode($audio_data);
       }
       catch (\Exception $exception) {
