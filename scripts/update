@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -o errtrace -o noclobber -o nounset -o pipefail
+IFS=$'\n\t'
+
+dir=$(cd $(dirname "${BASH_SOURCE[0]}")/../../../../../ && pwd)
+
+cd $dir
+
+# Update base code
+git pull
+
+# update kreol modules and themes
+git -C sites/all/modules/kreol pull
+git -C sites/all/themes/kreol pull
+
+# Reset files that will be patched
+git checkout $(grep --no-filename '^+++' sites/all/modules/kreol/patches/*.patch | sed -e 's#^+++ [ab]/##')
+# Apply patches
+for f in sites/all/modules/kreol/patches/*.patch; do
+  patch --strip=1 < $f
+done
+
+# Update and revert stuff
+drush --yes pm-enable kreol_campaign
+drush --yes pm-disable update
+drush --yes updatedb
+drush --yes features-revert-all
+drush --yes variable-set site_frontpage 'user/login'
+drush --yes secure-permissions-rebuild
+drush --yes cache-clear all
