@@ -5,7 +5,6 @@ package = kReolen
 version = 7.x-1.0
 dependencies[] = ctools
 dependencies[] = ding_base
-dependencies[] = ding_webtrekk
 dependencies[] = features
 dependencies[] = field_group
 dependencies[] = field_hidden
