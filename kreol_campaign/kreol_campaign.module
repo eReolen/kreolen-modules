@@ -55,6 +55,9 @@ function kreol_campaign_preprocess_entity(&$variables) {
  */
 function kreol_campaign_form_alter(&$form, &$form_state, $form_id) {
   if ('kreol_campaign_node_form' === $form_id) {
+    // Hide the geofencing fields.
+    unset($form['field_geofencing_max_distance']);
+    unset($form['field_geofencing_origin']);
   }
 }
 
