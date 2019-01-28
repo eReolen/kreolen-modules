@@ -3,6 +3,7 @@ description = kReol campaigns
 core = 7.x
 package = kReolen
 version = 7.x-1.0
+dependencies[] = access_filter
 dependencies[] = ctools
 dependencies[] = ding_base
 dependencies[] = features

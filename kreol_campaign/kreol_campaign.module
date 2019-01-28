@@ -171,6 +171,8 @@ function kreol_campaign_secure_permissions($role) {
       'access administration pages',
       'administer redirects',
 
+      'administer access filter rules',
+
       'view the administration theme',
       'view own unpublished content',
       'use text format ding_wysiwyg',
