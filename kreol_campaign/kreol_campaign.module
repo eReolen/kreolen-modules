@@ -229,6 +229,12 @@ function kreol_campaign_entity_presave($entity, $type) {
         $metadata_url = 'https://audio.api.streaming.pubhub.dk/v1/orders/' . $order_id;
         $result = drupal_http_request($metadata_url);
         $audio_data = json_decode($result->data, TRUE);
+        // Replace cover with local (down-scaled) image.
+        $covers = ting_covers_get([$ting_entity->id]);
+        if (isset($covers[$ting_entity->id])) {
+          $audio_data['cover'] = image_style_url('ding_list_medium', $covers[$ting_entity->id]);
+        }
+
         // Turn http image urls into https urls (to prevent mixed content).
         array_walk_recursive($audio_data, function (&$value) {
           if (preg_match('@^http://images.pubhub.dk/@', $value)) {
