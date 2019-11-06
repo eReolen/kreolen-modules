@@ -261,10 +261,14 @@ function kreol_campaign_entity_presave($entity, $type) {
  * This hack tries to parse a JavaScript expression in an HTML page …
  */
 function _kreol_campaign_get_orderid($isbn) {
-  $url = 'https://play.pubhub.dk/lyttestation.html';
-  $response = drupal_http_request($url);
+  $response = &drupal_static(__FUNCTION__);
+
+  if (!isset($response)) {
+    $url = 'https://play.pubhub.dk/lyttestation.html';
+    $response = drupal_http_request($url);
+  }
   if (isset($response->data)) {
-    $pattern = '@[\'"](?P<isbn>[0-9]{13})[\'"]\s*:\s*[\'"](?P<orderid>[a-z0-9-]{36})[\'"].*//\s*(?P<title>.+)@i';
+    $pattern = '@[\'"](?P<isbn>[0-9]{13})[\'"]\s*:\s*[\'"](?P<orderid>[a-z0-9-]{36})[\'"]@i';
     if (preg_match_all($pattern, $response->data, $matches, PREG_SET_ORDER)) {
       foreach ($matches as $match) {
         if ($isbn === $match['isbn']) {
