@@ -1,0 +1,35 @@
+diff --git a/sites/all/modules/publizon/lib/PublizonClient.class.inc b/sites/all/modules/publizon/lib/PublizonClient.class.inc
+index 213e91dd..81c7799a 100644
+--- a/sites/all/modules/publizon/lib/PublizonClient.class.inc
++++ b/sites/all/modules/publizon/lib/PublizonClient.class.inc
+@@ -124,7 +124,7 @@ abstract class PublizonClient {
+     // Check for SOAP faults.
+     $fault = $response->xpath('//soap:Fault');
+     if (isset($fault[0])) {
+-      $message = $fault[0]->faultstring ?? 'Fault from Publizon web-service.';
++      $message = isset($fault[0]->faultstring) ? $fault[0]->faultstring : 'Fault from Publizon web-service.';
+       $this->logger->log($message);
+ 
+       // Throw exception, it's translated in the exception.
+@@ -138,7 +138,7 @@ abstract class PublizonClient {
+         return $response;
+       }
+       else {
+-        $message = $status[0]->message ?? 'Connection with the Publizon web-service failed.';
++        $message = isset($status[0]->message) ? $status[0]->message : 'Connection with the Publizon web-service failed.';
+         $this->logger->log(check_plain($message));
+ 
+         // Throw exception, it's translated in the exception.
+diff --git a/sites/all/modules/publizon/publizon.module b/sites/all/modules/publizon/publizon.module
+index 333f726a..b86c759e 100644
+--- a/sites/all/modules/publizon/publizon.module
++++ b/sites/all/modules/publizon/publizon.module
+@@ -492,7 +492,7 @@ function publizon_get_message($code) {
+     require drupal_get_path('module', 'publizon') . '/includes/publizon.default_error_messages.inc';
+   }
+ 
+-  return $messages[$code] ?? $messages[-1];
++  return $messages[$code] ? $messages[$code] : $messages[-1];
+ }
+ 
+ /**
