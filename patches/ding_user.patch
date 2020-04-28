@@ -1,27 +1,36 @@
 diff --git a/profiles/ding2/modules/ding_user/ding_user.module b/profiles/ding2/modules/ding_user/ding_user.module
-index 5734f9c..5c21eea 100644
+index c3fce289..d005b2c2 100644
 --- a/profiles/ding2/modules/ding_user/ding_user.module
 +++ b/profiles/ding2/modules/ding_user/ding_user.module
-@@ -9,7 +9,7 @@ include_once 'ding_user_comments.inc';
+@@ -27,7 +27,7 @@ function ding_user_pathauto_alias_alter(&$alias, $context) {
  /**
-  * Implements hook_user_init().
+  * Implements hook_init().
   */
 -function ding_user_init() {
 +function ding_user_init() { return;
    $args = arg();
    if ($args[0] == 'user') {
      // Set default title.
-@@ -238,7 +238,7 @@ function ding_user_access($account) {
-  * Modify user login form to use our backend and changes the form fields types
-  * to password.
+@@ -137,7 +137,7 @@ function ding_user_authenticate(array $user_info) {
+   try {
+     // If more info is provide from the user login form or SSO provider use it
+     // else default to empty array.
+-    $extra = $user_info['extra'] ?? [];
++    $extra = $user_info['extra'] ? $user_info['extra'] : [];
+ 
+     if (array_key_exists('single_sign_on', $user_info) && $user_info['single_sign_on'] == TRUE) {
+       // No password provided by the authentication request (not even the empty
+@@ -1147,7 +1147,7 @@ function ding_user_profile2_view($profile, $view_mode, $langcode) {
+ /**
+  * Implements hook_form_alter().
   */
 -function ding_user_form_alter(&$form, $form_state, $form_id) {
 +function ding_user_form_alter(&$form, $form_state, $form_id) { return;
    switch ($form_id) {
-     case 'user_login':
-     case 'user_login_block':
+     case 'user_register_form':
+       global $user;
 diff --git a/profiles/ding2/modules/ding_user/ding_user.pages.inc b/profiles/ding2/modules/ding_user/ding_user.pages.inc
-index c5a8e48..6785804 100644
+index c5a8e485..67858042 100644
 --- a/profiles/ding2/modules/ding_user/ding_user.pages.inc
 +++ b/profiles/ding2/modules/ding_user/ding_user.pages.inc
 @@ -63,7 +63,7 @@ function ding_user_authenticate_form($form, &$form_state) {
@@ -33,4 +42,3 @@ index c5a8e48..6785804 100644
    global $user;
    $auth_res = ding_provider_invoke('user', 'authenticate', $form_state['values']['name'], $form_state['values']['pass']);
    if (!is_array($auth_res) || !isset($auth_res['success'])) {
-
