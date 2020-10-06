@@ -280,3 +280,14 @@ function _kreol_campaign_get_orderid($isbn) {
 
   return NULL;
 }
+
+/**
+ * Implements hook_js_alter().
+ */
+function kreol_campaign_js_alter(&$javascript) {
+  $node = menu_get_object();
+  if ($node && 'kreol_campaign_tv' === $node->type) {
+    // We don't want cookies on tv pages.
+    unset($javascript['https://policy.app.cookieinformation.com/uc.js']);
+  }
+}
