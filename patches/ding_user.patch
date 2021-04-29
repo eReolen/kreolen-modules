@@ -1,5 +1,5 @@
 diff --git a/profiles/ding2/modules/ding_user/ding_user.module b/profiles/ding2/modules/ding_user/ding_user.module
-index c3fce289..d005b2c2 100644
+index c3fce2899..d005b2c26 100644
 --- a/profiles/ding2/modules/ding_user/ding_user.module
 +++ b/profiles/ding2/modules/ding_user/ding_user.module
 @@ -27,7 +27,7 @@ function ding_user_pathauto_alias_alter(&$alias, $context) {
@@ -30,7 +30,7 @@ index c3fce289..d005b2c2 100644
      case 'user_register_form':
        global $user;
 diff --git a/profiles/ding2/modules/ding_user/ding_user.pages.inc b/profiles/ding2/modules/ding_user/ding_user.pages.inc
-index c5a8e485..67858042 100644
+index c5a8e485a..67858042d 100644
 --- a/profiles/ding2/modules/ding_user/ding_user.pages.inc
 +++ b/profiles/ding2/modules/ding_user/ding_user.pages.inc
 @@ -63,7 +63,7 @@ function ding_user_authenticate_form($form, &$form_state) {

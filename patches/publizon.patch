@@ -1,8 +1,8 @@
 diff --git a/sites/all/modules/publizon/lib/PublizonClient.class.inc b/sites/all/modules/publizon/lib/PublizonClient.class.inc
-index 213e91dd..81c7799a 100644
+index 0cda778bf..502d65a49 100644
 --- a/sites/all/modules/publizon/lib/PublizonClient.class.inc
 +++ b/sites/all/modules/publizon/lib/PublizonClient.class.inc
-@@ -124,7 +124,7 @@ abstract class PublizonClient {
+@@ -147,7 +147,7 @@ abstract class PublizonClient {
      // Check for SOAP faults.
      $fault = $response->xpath('//soap:Fault');
      if (isset($fault[0])) {
@@ -11,7 +11,7 @@ index 213e91dd..81c7799a 100644
        $this->logger->log($message);
  
        // Throw exception, it's translated in the exception.
-@@ -138,7 +138,7 @@ abstract class PublizonClient {
+@@ -161,7 +161,7 @@ abstract class PublizonClient {
          return $response;
        }
        else {
@@ -21,10 +21,10 @@ index 213e91dd..81c7799a 100644
  
          // Throw exception, it's translated in the exception.
 diff --git a/sites/all/modules/publizon/publizon.module b/sites/all/modules/publizon/publizon.module
-index 333f726a..b86c759e 100644
+index 5cea85f5a..1cc2db298 100644
 --- a/sites/all/modules/publizon/publizon.module
 +++ b/sites/all/modules/publizon/publizon.module
-@@ -492,7 +492,7 @@ function publizon_get_message($code) {
+@@ -499,7 +499,7 @@ function publizon_get_message($code) {
      require drupal_get_path('module', 'publizon') . '/includes/publizon.default_error_messages.inc';
    }
  
